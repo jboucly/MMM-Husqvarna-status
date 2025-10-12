@@ -1,0 +1,65 @@
+.mower-svg .sleep-z {
+    fill: #c9c9c9;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.mower-svg .sleep-z2 {
+    font-size: 13px;
+}
+
+.mower-svg .sleep-z3 {
+    font-size: 10px;
+}
+
+.mower-icon.parked .sleep-icon {
+    opacity: 1 !important;
+}
+
+.mower-icon.parked .sleep-z {
+    animation: sleep-float 3s ease-in-out infinite;
+}
+
+.mower-icon.parked .sleep-z2 {
+    animation: sleep-float 3s ease-in-out infinite 0.5s;
+}
+
+.mower-icon.parked .sleep-z3 {
+    animation: sleep-float 3s ease-in-out infinite 1s;
+}
+
+.mower-icon.parked .status-led {
+    fill: #2196f3;
+    animation: sleep-dim 4s ease-in-out infinite;
+}
+
+/* Sleep floating effect */
+@keyframes sleep-float {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.8);
+    }
+}
+
+/* LED shutdown and sleep */
+@keyframes sleep-dim {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.1;
+    }
+}

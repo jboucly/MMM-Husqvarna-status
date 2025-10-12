@@ -1,0 +1,74 @@
+.mower-svg .lightning {
+    fill: #ffc107;
+    stroke: #ff9800;
+    stroke-width: 0.5;
+}
+
+/* Icône de charge - masquée par défaut */
+.mower-svg .charging-icon {
+    opacity: 0;
+}
+
+.mower-icon.charging .charging-icon {
+    opacity: 1;
+}
+
+/* CHARGE - Robot qui s'illumine avec éclair */
+.mower-icon.charging .charging-icon .lightning {
+    animation: lightning-flash 1s ease-in-out infinite alternate;
+}
+
+.mower-icon.charging .mower-body {
+    animation: charging-glow 2s ease-in-out infinite;
+}
+
+.mower-icon.charging .mower-hood {
+    animation: charging-glow 2s ease-in-out infinite;
+}
+
+.mower-icon.charging .mower-panel {
+    animation: charging-glow 2s ease-in-out infinite;
+}
+
+.mower-icon.charging .status-led {
+    fill: #ffc107;
+    animation: charging-pulse 1.5s ease-in-out infinite;
+}
+
+/* Flashing enlightens */
+@keyframes lightning-flash {
+    0%,
+    100% {
+        opacity: 1;
+        transform: translate(25px, 10px) scale(1);
+    }
+
+    50% {
+        opacity: 0.3;
+        transform: translate(25px, 10px) scale(1.2);
+    }
+}
+
+/* Glow effect during charging */
+@keyframes charging-glow {
+    0%,
+    100% {
+        filter: brightness(1) drop-shadow(0 0 5px rgb(255 193 7 / 0%));
+    }
+
+    50% {
+        filter: brightness(1.5) drop-shadow(0 0 15px rgb(255 193 7 / 80%));
+    }
+}
+
+/* Pulse effect during charging */
+@keyframes charging-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}

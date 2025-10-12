@@ -1,0 +1,55 @@
+.mower-svg .cutting-zone {
+    fill: none;
+    stroke: #4caf50;
+    stroke-width: 1;
+    stroke-dasharray: 3, 3;
+    opacity: 0;
+}
+
+/* Grass blades */
+.mower-svg .grass {
+    opacity: 0;
+    stroke: #4caf50;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+/* Grass that only appears during mowing */
+.mower-icon.mowing .grass {
+    opacity: 1 !important;
+}
+
+/* Grass blades */
+.mower-svg .grass-blade {
+    transform-origin: bottom center;
+}
+
+/* MOWING - Bot moving and cutting grass */
+.mower-icon.mowing .mower-svg {
+    animation: mowing-movement 3s ease-in-out infinite;
+}
+
+.mower-icon.mowing .cutting-zone {
+    opacity: 1;
+}
+
+.mower-icon.mowing .status-led {
+    fill: #4caf50;
+    animation: led-blink 1s ease-in-out infinite;
+}
+
+/* MOWING - Bot moving and cutting grass */
+@keyframes mowing-movement {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-3px);
+    }
+
+    75% {
+        transform: translateX(3px);
+    }
+}

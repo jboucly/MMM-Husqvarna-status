@@ -1,0 +1,21 @@
+/* Bot Leaving */
+.mower-icon.leaving .mower-svg {
+    animation: leaving-movement 2s ease-in-out infinite;
+}
+
+.mower-icon.leaving .status-led {
+    fill: #ff9800;
+    animation: status-blink 1s ease-in-out infinite;
+}
+
+/* Leaving movement */
+@keyframes leaving-movement {
+    0%,
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateX(-3px) rotate(-1deg);
+    }
+}

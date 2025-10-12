@@ -1,0 +1,53 @@
+.mower-svg .home-icon {
+    opacity: 0;
+}
+
+.mower-svg .house-roof {
+    fill: #d32f2f;
+}
+
+.mower-svg .house-body {
+    fill: #f5f5f5;
+    stroke: #999;
+    stroke-width: 1;
+}
+
+.mower-svg .house-door {
+    fill: #8d6e63;
+}
+
+.mower-icon.going-home .mower-svg {
+    animation: going-home-movement 2.5s ease-in-out infinite;
+}
+
+.mower-icon.going-home .home-icon {
+    opacity: 1;
+    animation: home-bounce 2s ease-in-out infinite;
+}
+
+.mower-icon.going-home .status-led {
+    fill: #2196f3;
+    animation: status-blink 1.5s ease-in-out infinite;
+}
+
+@keyframes going-home-movement {
+    0%,
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateX(5px) rotate(2deg);
+    }
+}
+
+@keyframes home-bounce {
+    0%,
+    100% {
+        transform: scale(1) translateY(0);
+    }
+
+    50% {
+        transform: scale(1.1) translateY(-2px);
+    }
+}
