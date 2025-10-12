@@ -1,32 +1,38 @@
 {
-  "name": "mmm-template",
-  "version": "1.0.0",
-  "description": "[Module description]",
-  "main": "MMM-Template.js",
-  "scripts": {
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
-    "test": "node --run lint"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+[GitHub url].git"
-  },
-  "keywords": [
-    "template"
-  ],
-  "author": "[Author]",
-  "license": "MIT",
-  "bugs": {
-    "url": "[GitHub url]/issues"
-  },
-  "homepage": "[GitHub url]#readme",
-  "devDependencies": {
-    "@eslint/css": "^0.9.0",
-    "@eslint/js": "^9.30.1",
-    "@eslint/markdown": "^6.6.0",
-    "@stylistic/eslint-plugin": "^5.1.0",
-    "eslint": "^9.30.1",
-    "globals": "^16.3.0"
-  }
+    "name": "mmm-husqvarna-status",
+    "version": "1.0.0",
+    "description": "Magic Mirror Module for get status of your Husqvarna mower",
+    "main": "MMM-Husqvarna-Status.js",
+    "scripts": {
+        "lint": "eslint",
+        "lint:fix": "eslint --fix",
+        "test": "tsx tests/test-api.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jboucly/MMM-Husqvarna-status.git"
+    },
+    "keywords": [
+        "template"
+    ],
+    "author": "Jboucly",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/jboucly/MMM-Husqvarna-status/issues"
+    },
+    "homepage": "https://github.com/jboucly/MMM-Husqvarna-status#readme",
+    "devDependencies": {
+        "@eslint/css": "^0.9.0",
+        "@eslint/js": "^9.30.1",
+        "@eslint/markdown": "^6.6.0",
+        "@stylistic/eslint-plugin": "^5.1.0",
+        "eslint": "^9.30.1",
+        "globals": "^16.3.0",
+        "tsx": "^4.20.6",
+        "typescript": "^5.9.3"
+    },
+    "dependencies": {
+        "automower-connect-sdk": "^1.1.0",
+        "husqvarna-authentication-sdk": "^1.1.0"
+    }
 }
