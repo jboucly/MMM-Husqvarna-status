@@ -153,65 +153,65 @@ Module.register('MMM-Husqvarna-Status', {
     getMowerIcon() {
         return `
             <svg viewBox="0 0 120 100" class="mower-svg">
-                <!-- Corps principal - forme rectangulaire arrondie turquoise comme l'image -->
+                <!-- Main body - turquoise rounded rectangular -->
                 <rect x="25" y="45" width="70" height="30" rx="15" ry="15" class="mower-body"/>
 
-                <!-- Capot supérieur gris -->
+                <!-- Hood -->
                 <rect x="35" y="35" width="50" height="20" rx="10" ry="10" class="mower-hood"/>
 
-                <!-- Panneau orange sur le dessus -->
+                <!-- Top orange panel -->
                 <rect x="45" y="30" width="30" height="15" rx="5" ry="5" class="mower-panel"/>
 
-                <!-- Grande roue côté gauche (comme dans l'image) -->
+                <!-- Left main wheel -->
                 <circle cx="25" cy="70" r="12" class="main-wheel" fill="#333" stroke="#000" stroke-width="2"/>
                 <circle cx="25" cy="70" r="8" class="wheel-inner" fill="#666"/>
                 <circle cx="25" cy="70" r="3" class="wheel-center" fill="#999"/>
 
-                <!-- Petite roue arrière droite (abaissée) -->
+                <!-- Right rear wheel -->
                 <circle cx="95" cy="70" r="6" class="rear-wheel" fill="#333" stroke="#000" stroke-width="1"/>                <!-- LED de statut -->
                 <circle cx="60" cy="42" r="2" class="status-led"/>
 
-                <!-- Zone de coupe (invisible par défaut) -->
+                <!-- Cutting area (invisible by default) -->
                 <g class="cutting-area">
                     <ellipse cx="60" cy="85" rx="45" ry="8" class="cutting-zone"/>
 
-                    <!-- Brins d'herbe réalistes sous la tondeuse -->
+                    <!-- Realistic grass blades under the mower -->
                     <g class="grass" style="opacity: 0;">
-                        <!-- Brin 1  -->
+                        <!-- Blade 1 -->
                         <path d="M35,85 Q36,82 37,80 Q38,78 39,77 Q40,76 41,77 Q42,78 43,80 Q44,82 45,85"
                             class="grass-blade" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/>
-                        <!-- Brin 2 -->
+                        <!-- Blade 2 -->
                         <path d="M45,88 Q46,85 47,83 Q48,81 49,80 Q50,79 51,80 Q52,81 53,83 Q54,85 55,88"
                             class="grass-blade" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/>
-                        <!-- Brin 3 -->
+                        <!-- Blade 3 -->
                         <path d="M55,86 Q56,83 57,81 Q58,79 59,78 Q60,77 61,78 Q62,79 63,81 Q64,83 65,86"
                             class="grass-blade" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/>
-                        <!-- Brin 4 -->
+                        <!-- Blade 4 -->
                         <path d="M65,89 Q66,86 67,84 Q68,82 69,81 Q70,80 71,81 Q72,82 73,84 Q74,86 75,89"
                             class="grass-blade" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/>
-                        <!-- Brin 5 -->
+                        <!-- Blade 5 -->
                         <path d="M75,87 Q76,84 77,82 Q78,80 79,79 Q80,78 81,79 Q82,80 83,82 Q84,84 85,87"
                             class="grass-blade" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/>
                     </g>
                 </g>
 
-                <!-- Icône maison (pour retour station) -->
+                <!-- Home icon (for return to station) -->
                 <g class="home-icon" transform="translate(85, 15)">
-                    <!-- Toit rouge -->
+                    <!-- Roof -->
                     <polygon points="0,8 8,0 16,8" class="house-roof" fill="#d32f2f"/>
-                    <!-- Corps de la maison blanc -->
+                    <!-- Body -->
                     <rect x="2" y="8" width="12" height="10" class="house-body" fill="#f5f5f5"/>
-                    <!-- Porte marron -->
+                    <!-- Door -->
                     <rect x="6" y="12" width="4" height="6" class="house-door" fill="#8d6e63"/>
                 </g>
 
-                <!-- Icône de charge -->
+                <!-- Charging icon -->
                 <g class="charging-icon">
                     <polygon points="1,0 7,0 5,5 9,5 2,12 4,7 0,7" fill="#ffc107" class="lightning"/>
                     <polygon points="2,1 6,1 4.5,4 7.5,4 3,10 4,6 1,6" fill="#ffeb3b" class="lightning"/>
                 </g>
 
-                <!-- Icône de sommeil -->
+                <!-- Sleep icon -->
                 <g class="sleep-icon" style="opacity: 0;">
                     <text x="75" y="25" class="sleep-z">Z</text>
                     <text x="80" y="20" class="sleep-z sleep-z2">z</text>
