@@ -116,6 +116,8 @@ module.exports = NodeHelper.create({
      * Process and normalize mower data
      */
     processMowerData(rawData) {
+        console.log(rawData)
+
         const processed = {
             id: rawData.id,
             name: rawData.attributes?.system?.name || 'Husqvarna Mower',
@@ -123,8 +125,11 @@ module.exports = NodeHelper.create({
             activity: rawData.attributes?.mower?.activity || 'UNKNOWN',
             state: rawData.attributes?.mower?.state || 'UNKNOWN',
             mode: rawData.attributes?.mower?.mode || 'UNKNOWN',
-            batteryPercent: rawData.attributes?.battery?.batteryPercent,
+            batteryPercent: rawData.attributes?.battery?.batteryPercent || 0,
             errorCode: rawData.attributes?.mower?.errorCode || 0,
+            totalCycles: rawData.attributes?.statistics?.numberOfChargingCycles || 0,
+            totalCuttingTime: rawData.attributes?.statistics?.totalCuttingTime || 0,
+            numberOfCollisions: rawData.attributes?.statistics?.numberOfCollisions || 0,
             errorDescription: rawData.attributes?.mower?.errorCodeTimestamp
                 ? this.getErrorDescription(rawData.attributes.mower.errorCode)
                 : null,

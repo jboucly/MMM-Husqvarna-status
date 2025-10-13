@@ -243,10 +243,38 @@ Module.register('MMM-Husqvarna-Status', {
 
         let details = ''
 
+        if (this.mowerData.name !== undefined && this.mowerData.model !== undefined) {
+            details += `<div class="mower-info">
+                <p class="bot-name">${this.mowerData.name}</p>
+                <span class="bot-model">${this.mowerData.model}</span>
+            </div>`
+        }
+
         if (this.mowerData.batteryPercent !== undefined) {
             details += `<div class="detail-item">
                 <span class="detail-label">${this.translate('BATTERY')}:</span>
                 <span class="detail-value">${this.mowerData.batteryPercent}%</span>
+            </div>`
+        }
+
+        if (this.mowerData.totalCycles !== undefined) {
+            details += `<div class="detail-item">
+                <span class="detail-label">${this.translate('CHARGING_CYCLES')}:</span>
+                <span class="detail-value">${this.mowerData.totalCycles}</span>
+            </div>`
+        }
+
+        if (this.mowerData.totalCuttingTime !== undefined) {
+            details += `<div class="detail-item">
+                <span class="detail-label">${this.translate('TOTAL_CUTTING_TIME')}:</span>
+                <span class="detail-value">${Math.round((this.mowerData.totalCuttingTime || 0) / 3600)} h</span>
+            </div>`
+        }
+
+        if (this.mowerData.numberOfCollisions !== undefined) {
+            details += `<div class="detail-item">
+                <span class="detail-label">${this.translate('NUMBER_OF_COLLISIONS')}:</span>
+                <span class="detail-value">${this.mowerData.numberOfCollisions}</span>
             </div>`
         }
 

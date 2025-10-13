@@ -1,9 +1,13 @@
 {
     "LOADING": "Chargement...",
     "ERROR": "Erreur",
+    "MODEL": "Modèle",
     "BATTERY": "Batterie",
     "NEXT_START": "Prochain Démarrage",
     "LAST_UPDATE": "Dernière Mise à Jour",
+    "CHARGING_CYCLES": "Cycles de Charge",
+    "TOTAL_CUTTING_TIME": "Temps de Tonte Total",
+    "NUMBER_OF_COLLISIONS": "Nombre de Collisions",
 
     "STATUS_MOWING": "En Tonte",
     "STATUS_GOING_HOME": "Retour à la Base",

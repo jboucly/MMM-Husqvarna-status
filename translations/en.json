@@ -1,9 +1,13 @@
 {
     "LOADING": "Loading...",
     "ERROR": "Error",
+    "MODEL": "Model",
     "BATTERY": "Battery",
     "NEXT_START": "Next Start",
     "LAST_UPDATE": "Last Update",
+    "CHARGING_CYCLES": "Charging Cycles",
+    "TOTAL_CUTTING_TIME": "Total Cutting Time",
+    "NUMBER_OF_COLLISIONS": "Number of Collisions",
 
     "STATUS_MOWING": "Mowing",
     "STATUS_GOING_HOME": "Going Home",

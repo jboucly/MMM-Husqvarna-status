@@ -96,28 +96,33 @@
     font-size: 18px;
     font-weight: bold;
     color: #fff;
-    margin-bottom: 10px;
     text-align: center;
 }
 
-.details {
+.detail-item {
     font-size: 14px;
     color: #ccc;
     line-height: 1.4;
     text-align: center;
 }
 
-.battery-info {
-    margin-bottom: 5px;
+.mower-info {
+    line-height: 1;
+    padding-top: 10px;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
-.next-start {
-    margin-bottom: 5px;
+.bot-name {
+    color: #fff;
+    margin: unset;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.last-update {
+.bot-model {
+    color: #bbb;
     font-size: 12px;
-    color: #999;
 }
 
 .error {
