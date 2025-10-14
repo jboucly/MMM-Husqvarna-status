@@ -4,7 +4,15 @@ Module.register('MMM-Husqvarna-Status', {
         clientSecret: '',
         showDetails: true,
         animationSpeed: 2000,
-        updateInterval: 60000 // 1 minute
+        updateInterval: 60000, // 1 minute
+
+        // Cards info
+        showName: true,
+        showCycles: true,
+        showBattery: true,
+        showCuttingTime: true,
+        showCollisions: true,
+        showNextStart: true
     },
 
     // Current mower data
@@ -241,59 +249,75 @@ Module.register('MMM-Husqvarna-Status', {
     getDetailsHTML() {
         if (!this.mowerData) return ''
 
-        let details = ''
+        let details = '<div class="details-grid">'
 
-        if (this.mowerData.name !== undefined && this.mowerData.model !== undefined) {
-            details += `<div class="mower-info">
-                <p class="bot-name">${this.mowerData.name}</p>
-                <span class="bot-model">${this.mowerData.model}</span>
+        if (this.config.showName && this.mowerData.name !== undefined && this.mowerData.model !== undefined) {
+            details += `<div class="detail-card info-card">
+                <div class="card-icon">🤖</div>
+                <div class="card-content">
+                    <div class="card-title">${this.mowerData.name}</div>
+                    <div class="card-subtitle">${this.mowerData.model}</div>
+                </div>
             </div>`
         }
 
-        if (this.mowerData.batteryPercent !== undefined) {
-            details += `<div class="detail-item">
-                <span class="detail-label">${this.translate('BATTERY')}:</span>
-                <span class="detail-value">${this.mowerData.batteryPercent}%</span>
+        if (this.config.showBattery && this.mowerData.batteryPercent !== undefined) {
+            const batteryLevel = this.mowerData.batteryPercent
+            const batteryIcon =
+                batteryLevel > 80 ? '🔋' : batteryLevel > 50 ? '🪫' : batteryLevel > 20 ? '⚠️🪫' : '❌🪫'
+            details += `<div class="detail-card battery-card">
+                <div class="card-icon">${batteryIcon}</div>
+                <div class="card-content">
+                    <div class="card-title">${batteryLevel}%</div>
+                    <div class="card-subtitle">${this.translate('BATTERY')}</div>
+                </div>
             </div>`
         }
 
-        if (this.mowerData.totalCycles !== undefined) {
-            details += `<div class="detail-item">
-                <span class="detail-label">${this.translate('CHARGING_CYCLES')}:</span>
-                <span class="detail-value">${this.mowerData.totalCycles}</span>
+        if (this.config.showCycles && this.mowerData.totalCycles !== undefined) {
+            details += `<div class="detail-card cycles-card">
+                <div class="card-icon">🔄</div>
+                <div class="card-content">
+                    <div class="card-title">${this.mowerData.totalCycles}</div>
+                    <div class="card-subtitle">${this.translate('CHARGING_CYCLES')}</div>
+                </div>
             </div>`
         }
 
-        if (this.mowerData.totalCuttingTime !== undefined) {
-            details += `<div class="detail-item">
-                <span class="detail-label">${this.translate('TOTAL_CUTTING_TIME')}:</span>
-                <span class="detail-value">${Math.round((this.mowerData.totalCuttingTime || 0) / 3600)} h</span>
+        if (this.config.showCuttingTime && this.mowerData.totalCuttingTime !== undefined) {
+            const hours = Math.round((this.mowerData.totalCuttingTime || 0) / 3600)
+            details += `<div class="detail-card time-card">
+                <div class="card-icon">⏱️</div>
+                <div class="card-content">
+                    <div class="card-title">${hours}h</div>
+                    <div class="card-subtitle">${this.translate('TOTAL_CUTTING_TIME')}</div>
+                </div>
             </div>`
         }
 
-        if (this.mowerData.numberOfCollisions !== undefined) {
-            details += `<div class="detail-item">
-                <span class="detail-label">${this.translate('NUMBER_OF_COLLISIONS')}:</span>
-                <span class="detail-value">${this.mowerData.numberOfCollisions}</span>
+        if (this.config.showCollisions && this.mowerData.numberOfCollisions !== undefined) {
+            details += `<div class="detail-card collision-card">
+                <div class="card-icon">💥</div>
+                <div class="card-content">
+                    <div class="card-title">${this.mowerData.numberOfCollisions}</div>
+                    <div class="card-subtitle">${this.translate('NUMBER_OF_COLLISIONS')}</div>
+                </div>
             </div>`
         }
 
-        if (this.mowerData.nextStartTimestamp) {
+        if (this.config.showNextStart && this.mowerData.nextStartTimestamp) {
             const nextStart = new Date(this.mowerData.nextStartTimestamp)
-            details += `<div class="detail-item">
-                <span class="detail-label">${this.translate('NEXT_START')}:</span>
-                <span class="detail-value">${nextStart.toLocaleString()}</span>
+            const timeString = nextStart.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            details += `<div class="detail-card schedule-card">
+                <div class="card-icon">📅</div>
+                <div class="card-content">
+                    <div class="card-title">${timeString}</div>
+                    <div class="card-subtitle">${this.translate('NEXT_START')}</div>
+                </div>
             </div>`
         }
 
-        if (this.mowerData.lastUpdate) {
-            const lastUpdate = new Date(this.mowerData.lastUpdate)
-            details += `<div class="detail-item">
-                <span class="detail-label">${this.translate('LAST_UPDATE')}:</span>
-                <span class="detail-value">${lastUpdate.toLocaleString()}</span>
-            </div>`
-        }
-
+        details += '</div>'
         return details
     },
 
