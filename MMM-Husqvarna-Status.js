@@ -19,8 +19,6 @@ Module.register('MMM-Husqvarna-Status', {
     mowerData: null,
     updateTimer: null,
 
-    requiresVersion: '2.1.0',
-
     getStyles() {
         return [
             this.file('styles/home.css'),
