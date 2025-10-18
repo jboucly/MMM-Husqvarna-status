@@ -306,12 +306,24 @@ Module.register('MMM-Husqvarna-Status', {
         }
 
         if (this.config.showNextStart && this.mowerData.nextStartTimestamp) {
+            let dateTimeToDisplay = ''
             const nextStart = new Date(this.mowerData.nextStartTimestamp)
-            const timeString = nextStart.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+
+            if (nextStart.toDateString() === new Date().toDateString()) {
+                dateTimeToDisplay = nextStart.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            } else {
+                dateTimeToDisplay = nextStart.toLocaleString([], {
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
+            }
+
             details += `<div class="detail-card schedule-card">
                 <div class="card-icon">📅</div>
                 <div class="card-content">
-                    <div class="card-title">${timeString}</div>
+                    <div class="card-title">${dateTimeToDisplay}</div>
                     <div class="card-subtitle">${this.translate('NEXT_START')}</div>
                 </div>
             </div>`

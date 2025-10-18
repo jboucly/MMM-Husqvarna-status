@@ -116,8 +116,6 @@ module.exports = NodeHelper.create({
      * Process and normalize mower data
      */
     processMowerData(rawData) {
-        console.log(rawData)
-
         const processed = {
             id: rawData.id,
             name: rawData.attributes?.system?.name || 'Husqvarna Mower',
