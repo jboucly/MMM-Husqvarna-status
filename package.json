@@ -13,7 +13,10 @@
         "url": "git+https://github.com/jboucly/MMM-Husqvarna-status.git"
     },
     "keywords": [
-        "template"
+        "Husqvarna",
+        "Automower",
+        "Smart Home",
+        "MagicMirror"
     ],
     "author": "Jboucly",
     "license": "MIT",

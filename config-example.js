@@ -1,27 +1,30 @@
-// Exemple de configuration pour MMM-Husqvarna-Status
-// Ajoutez ceci à votre fichier config/config.js dans la section modules
+// Example configuration for MMM-Husqvarna-Status
+// Add this to your config/config.js file inside the modules array
 
 {
     module: "MMM-Husqvarna-Status",
-    position: "top_right", // Positions possibles: top_bar, top_left, top_center, top_right, upper_third, middle_center, lower_third, bottom_left, bottom_center, bottom_right, bottom_bar
+    position: "top_right", // Possible positions: top_bar, top_left, top_center, top_right, upper_third, middle_center, lower_third, bottom_left, bottom_center, bottom_right, bottom_bar
     config: {
-        // CONFIGURATION OBLIGATOIRE
-        clientId: "VOTRE_CLIENT_ID_HUSQVARNA", // Obtenez-le sur https://developer.husqvarnagroup.cloud/
-        clientSecret: "VOTRE_CLIENT_SECRET_HUSQVARNA", // Obtenez-le sur https://developer.husqvarnagroup.cloud/
+        // REQUIRED CONFIGURATION
+        clientId: "YOUR_CLIENT_ID_HUSQVARNA", // Obtain it from https://developer.husqvarnagroup.cloud/
+        clientSecret: "YOUR_CLIENT_SECRET_HUSQVARNA", // Obtain it from https://developer.husqvarnagroup.cloud/
 
-        // CONFIGURATION OPTIONNELLE
-        updateInterval: 60000, // Intervalle de mise à jour en millisecondes (60000 = 1 minute)
-        showDetails: true, // Afficher les détails (batterie, prochaine tonte, etc.)
-        animationSpeed: 2000, // Vitesse d'animation du DOM en millisecondes
-        mowerModel: "automower", // Modèle de tondeuse (pour futures extensions)
+        // OPTIONAL CONFIGURATION
+        updateInterval: 60000, // Update interval in milliseconds (60000 = 1 minute)
+        showDetails: true, // Show details (battery, next mow, etc.)
+        animationSpeed: 2000, // DOM animation speed in milliseconds
 
-        // La langue sera automatiquement détectée depuis la configuration MagicMirror
-        // Langues supportées: "en" (anglais), "fr" (français)
+        showName: true, // Show mower name
+        showCycles: true, // Show number of charging cycles
+        showBattery: true, // Show battery percentage
+        showCuttingTime: true, // Show total cutting time
+        showCollisions: true, // Show number of collisions
+        showNextStart: true // Show next start time
     }
 }
 
-// NOTES IMPORTANTES:
-// 1. Remplacez "VOTRE_CLIENT_ID_HUSQVARNA" par votre vrai Client ID
-// 2. Remplacez "VOTRE_CLIENT_SECRET_HUSQVARNA" par votre vrai Client Secret
-// 3. Assurez-vous que votre tondeuse est associée au même compte développeur
-// 4. Gardez vos identifiants sécurisés et ne les partagez jamais
+// IMPORTANT NOTES:
+// 1. Replace "VOTRE_CLIENT_ID_HUSQVARNA" with your actual Client ID
+// 2. Replace "VOTRE_CLIENT_SECRET_HUSQVARNA" with your actual Client Secret
+// 3. Ensure your mower is linked to the same Husqvarna developer account
+// 4. Keep your credentials secure and never share them

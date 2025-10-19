@@ -1,209 +1,131 @@
 # MMM-Husqvarna-Status
 
-Un module MagicMirror² pour afficher le statut de votre tondeuse robot Husqvarna Automower avec des animations visuelles.
+MagicMirror² module to display the status of your Husqvarna Automower with visual animations.
 
-![Husqvarna Status Module](screenshot.png)
+[![Example](screenshots/example.gif)](screenshots/example.gif)
 
-## Fonctionnalités
+[Voir la version française / See French version](README.fr.md)
 
-- 🚜 **Affichage animé** : Visualisation de votre tondeuse avec des animations selon son état
-- 🔋 **Informations détaillées** : Batterie, prochaine tonte, dernière mise à jour
-- 🌍 **Multilingue** : Support français et anglais
-- ⚡ **Temps réel** : Mise à jour automatique du statut
-- 🎨 **Animations contextuelles** :
-    - **Tonte** : Animation de mouvement avec lame rotative
-    - **Charge** : Pulsation avec icône éclair
-    - **Attente/Parking** : Animation de "respiration" avec icône sommeil
-    - **Erreur** : Animation de tremblement avec icône d'alerte
+---
 
-## Prérequis
+## 🚀 Features
 
-1. **Compte Développeur Husqvarna** : Vous devez créer une application sur le portail développeur Husqvarna
-2. **Client ID et Client Secret** : Vous devez obtenir ces identifiants depuis le portail développeur Husqvarna
-3. **MagicMirror²** version 2.1.0 ou supérieure
+- Animated mower visualization (different animations depending on mower state)
+- Battery, next start, total cutting time and other statistics
+- Multilingual (English and French)
+- Automatic polling of the Husqvarna Automower API
+
+See example on [STATUS_EXAMPLE.md](STATUS_EXAMPLE.md)
+
+## Requirements
+
+1. Husqvarna Developer account and an application registered on the Husqvarna Developer Portal [see here](https://developer.husqvarnagroup.cloud/)
+2. Client ID and Client Secret from Husqvarna
+3. MagicMirror²
 
 ## Installation
 
-1. Naviguez vers le dossier des modules de MagicMirror :
+1. Go to your MagicMirror modules folder :
 
 ```bash
 cd ~/MagicMirror/modules
 ```
 
-2. Clonez ce repository :
+2. Clone this repository:
 
 ```bash
 git clone https://github.com/jboucly/MMM-Husqvarna-status.git
 ```
 
-3. Naviguez vers le dossier du module :
-
-```bash
-cd MMM-Husqvarna-status
-```
-
-4. Installez les dépendances :
+3. Install dependencies:
 
 ```bash
 npm install
 ```
 
-5. **(Optionnel) Testez votre configuration API :**
-
-```bash
-pnpm test VOTRE_CLIENT_ID VOTRE_CLIENT_SECRET
-```
-
-Ce script vous aidera à vérifier que vos identifiants fonctionnent correctement.
-
-## Obtenir les identifiants Husqvarna
-
-1. Rendez-vous sur [Husqvarna Developer Portal](https://developer.husqvarnagroup.cloud/)
-2. Créez un compte ou connectez-vous
-3. Créez une nouvelle application
-4. Notez votre **Client ID** et **Client Secret**
-5. Assurez-vous que votre tondeuse est associée à votre compte Husqvarna Connect
-
 ## Configuration
 
-Ajoutez le module à votre fichier `config/config.js` :
+Add the module to your `config/config.js`:
+
+You can copy and paste the file : [config-example.js](config-example.js)
 
 ```javascript
 {
     module: "MMM-Husqvarna-Status",
-    position: "top_right", // ou toute autre position
+    position: "middle_center",
     config: {
-        clientId: "VOTRE_CLIENT_ID_ICI",
-        clientSecret: "VOTRE_CLIENT_SECRET_ICI",
-        updateInterval: 60000, // 1 minute (optionnel)
-        showDetails: true, // Afficher les détails (optionnel)
-        animationSpeed: 2000, // Vitesse d'animation (optionnel)
-        mowerModel: "automower" // Modèle de tondeuse (optionnel)
+        // REQUIRED CONFIGURATION
+        clientId: "your-client-id-here",
+        clientSecret: "your-client-secret-here",
+
+        // OPTIONAL CONFIGURATION
+        updateInterval: 60000,
+        showDetails: true,
+        animationSpeed: 2000,
+
+        showName: true,
+        showCycles: true,
+        showBattery: true,
+        showCuttingTime: true,
+        showCollisions: true,
+        showNextStart: true
     }
 }
 ```
 
-### Options de configuration
+### Options
 
-| Option           | Type      | Défaut        | Description                                            |
-| ---------------- | --------- | ------------- | ------------------------------------------------------ |
-| `clientId`       | `string`  | **REQUIS**    | Votre Client ID Husqvarna                              |
-| `clientSecret`   | `string`  | **REQUIS**    | Votre Client Secret Husqvarna                          |
-| `updateInterval` | `number`  | `60000`       | Intervalle de mise à jour en millisecondes             |
-| `showDetails`    | `boolean` | `true`        | Afficher les détails (batterie, prochaine tonte, etc.) |
-| `animationSpeed` | `number`  | `2000`        | Vitesse d'animation du DOM en millisecondes            |
-| `mowerModel`     | `string`  | `"automower"` | Modèle de tondeuse (pour futures extensions)           |
+| Options         | Required | Type      | Default | Description                                                                                          |
+| --------------- | -------- | --------- | ------- | ---------------------------------------------------------------------------------------------------- |
+| clientId        | ✅       | `string`  | null    | Client id from your Husvarna application. Obtain it from https://developer.husqvarnagroup.cloud/     |
+| clientSecret    | ✅       | `string`  | null    | Client secret from your Husvarna application. Obtain it from https://developer.husqvarnagroup.cloud/ |
+| updateInterval  | ❌       | `number`  | 60000   | Interval to update status. Default is `60000ms` = 1 min                                              |
+| animationSpeed  | ❌       | `number`  | 2000    | Speed of animation of mower. Default is `2000ms`                                                     |
+| showDetails     | ❌       | `boolean` | true    | Display table detail of mower                                                                        |
+| showName        | ❌       | `boolean` | true    | Display name of your mower                                                                           |
+| showCycles      | ❌       | `boolean` | true    | Display the number of charge cycles of your mower battery                                            |
+| showBattery     | ❌       | `boolean` | true    | Display percentage of battery                                                                        |
+| showCuttingTime | ❌       | `boolean` | true    | Display the number of cutting time                                                                   |
+| showCollisions  | ❌       | `boolean` | true    | Display the number of collision                                                                      |
+| showNextStart   | ❌       | `boolean` | true    | Display the date or time your mower will next start                                                  |
 
-## États supportés
+## Usage
 
-Le module affiche différentes animations selon l'état de votre tondeuse :
+Restart MagicMirror after configuration. The module authenticates with Husqvarna and displays mower data. Run MagicMirror in dev mode to see logs for debugging.
 
-### 🚜 **Tonte (MOWING)**
+## Mower states and animations
 
-- Animation de mouvement latéral
-- Lame rotative rouge
-- Couleur verte vive
+- MOWING : lateral movement + grass blades animation
+- CHARGING : glow + lightning icon animation
+- PARKED : breathing sleep animation + Z icons
+- GOING_HOME : mower moving to the charging station + home icon
+- LEAVING : mower leaving the charging station
+- ERROR : Mower surrounded by a red square
 
-### ⚡ **Charge (CHARGING)**
+## Troubleshooting
 
-- Animation de pulsation
-- Icône éclair clignotante
-- Couleur ambre
-
-### 💤 **Parking/Attente (PARKED)**
-
-- Animation de "respiration" douce
-- Icône sommeil flottante
-- Couleur grise
-
-### ⚠️ **Erreur (ERROR)**
-
-- Animation de tremblement
-- Icône d'alerte clignotante
-- Couleur rouge
-- Affichage du message d'erreur
-
-## Codes d'erreur supportés
-
-Le module traduit automatiquement les codes d'erreur Husqvarna en messages lisibles :
-
-- **0** : Aucune erreur
-- **1** : Coincé
-- **2** : Soulevé
-- **3-6** : Problèmes moteur roues
-- **7-8** : Problèmes moteur de coupe
-- **10** : Problème électronique
-- **11-15** : Problèmes signal de boucle
-- **17** : Pente trop raide
-- **18-19** : Problèmes batterie
-- Et bien d'autres...
-
-## Dépannage
-
-### Erreur d'authentification
-
-- Vérifiez que votre `apiKey`, `username` et `password` sont corrects
-- Assurez-vous que votre compte Husqvarna Connect fonctionne
-- Vérifiez que votre API Key est active
-
-### Aucune tondeuse trouvée
-
-- Assurez-vous que votre tondeuse est bien associée à votre compte Husqvarna Connect
-- Vérifiez que votre tondeuse est connectée et en ligne
-
-### Problèmes de réseau
-
-- Vérifiez votre connexion internet
-- Les serveurs Husqvarna peuvent parfois être indisponibles
-
-### Logs de débogage
-
-Consultez les logs de MagicMirror pour plus d'informations :
+- Authentication issues: check your Client ID/Client Secret and account
+- No mower found: ensure mower is linked to your Husqvarna Connect account
+- Network issues: check your internet connection and Husqvarna API availability
+- Logs: run MagicMirror in dev mode and inspect console logs
 
 ```bash
-npm start dev
+npm start:dev
 ```
 
-## Structure des fichiers
+## API
 
-```
-MMM-Husqvarna-status/
-├── MMM-Husqvarna-Status.js     # Module principal
-├── node_helper.js              # Helper Node.js pour API
-├── MMM-Husqvarna-Status.css    # Styles et animations
-├── translations/
-│   ├── en.json                 # Traductions anglaises
-│   └── fr.json                 # Traductions françaises
-├── package.json                # Dépendances
-└── README.md                   # Cette documentation
-```
+This module uses `husqvarna-authentication-sdk` for authentication and `automower-connect-sdk` to fetch mower data.
 
-## API Husqvarna
+- [automower-connect-sdk](https://www.npmjs.com/package/automower-connect-sdk)
+- [husqvarna-authentication-sdk](https://www.npmjs.com/package/husqvarna-authentication-sdk)
 
-Ce module utilise :
+You can see the source code for more details [here](https://github.com/jboucly/husqvarna-sdk-generator).
 
-- `husqvarna-authentication-sdk` pour l'authentification
-- `automower-connect-sdk` pour récupérer les données de la tondeuse
+## Contributing
 
-## Contribution
+Contributions are welcome — open issues and pull requests on GitHub.
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
+## License
 
-- Signaler des bugs
-- Proposer de nouvelles fonctionnalités
-- Améliorer la documentation
-- Ajouter de nouvelles traductions
-
-## Licence
-
-MIT License - voir le fichier [LICENSE.md](LICENSE.md) pour plus de détails.
-
-## Remerciements
-
-- [MagicMirror²](https://github.com/MichMich/MagicMirror) pour le framework
-- [Husqvarna Group](https://developer.husqvarnagroup.cloud/) pour l'API
-- La communauté MagicMirror pour l'inspiration
-
----
-
-**Note** : Ce module n'est pas officiel et n'est pas affilié à Husqvarna Group. Utilisez-le à vos propres risques.
+MIT
